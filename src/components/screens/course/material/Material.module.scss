@@ -1,0 +1,63 @@
+@import "../../../../assets/styles/var.scss";
+$mb: 10px;
+.root {
+	overflow: hidden;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: $title;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 24px;
+		margin-bottom: $mb;
+		&:first-child {
+			font-weight: 700;
+			font-size: 34px;
+			line-height: 41px;
+			margin-bottom: 20px;
+		}
+	}
+	p {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 19px;
+		color: $text;
+		margin-bottom: $mb;
+	}
+	img {
+		border-radius: $mb;
+		width: 100%;
+		height: auto;
+		display: block;
+		margin-bottom: 20px;
+	}
+	ul {
+		margin-bottom: $mb;
+		li {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 19px;
+			margin-bottom: 5px;
+			list-style: inside;
+			color: $text;
+		}
+	}
+	ol {
+		margin: 0;
+		padding-left: 20px;
+		li {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 19px;
+			margin-bottom: 5px;
+
+			color: $text;
+		}
+	}
+	audio {
+		margin-bottom: 20px;
+	}
+}

@@ -1,0 +1,56 @@
+@import '../../../../../assets/styles/var.scss';
+
+.root {
+	background-color: #70e6e8;
+	background-repeat: no-repeat;
+	background-position: top -80px right;
+	background-size: contain;
+
+	.left {
+		max-width: 592px;
+		align-self: center;
+	}
+	.right {
+		align-self: flex-end;
+		padding-top: 80px;
+	}
+	.wrap {
+		display: flex;
+		min-height: calc(100vh - 80px);
+	}
+
+	h1 {
+		font-weight: 700;
+		font-size: 60px;
+		line-height: 60px;
+		color: $title;
+		margin-bottom: 20px;
+	}
+	h3 {
+		margin-bottom: 10px;
+	}
+	p {
+		margin-bottom: 40px;
+	}
+	img {
+		max-width: 619px;
+		margin-right: -40px;
+	}
+	@media (max-width: 1250px) {
+		img {
+			max-width: 100%;
+			margin-right: 0;
+		}
+	}
+	@media (max-width: 1080px) {
+		.right {
+			display: none;
+		}
+	}
+	@media (max-width: 420px) {
+		h1 {
+            font-size: 40px;
+            line-height: 1.1;
+		}
+	}
+}

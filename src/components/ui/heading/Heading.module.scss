@@ -1,0 +1,40 @@
+@import "../../../assets/styles/var.scss";
+
+.h2 {
+	font-weight: 700;
+	font-size: 48px;
+	line-height: 1.2083;
+	color: $title;
+	@media (max-width: 450px) {
+		font-size: 36px;
+	}
+}
+
+.h3 {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.21;
+	text-transform: uppercase;
+	color: $subtitle;
+}
+.h4 {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 24px;
+	color: $title;
+}
+.p {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5625;
+	color: $text;
+}
+.mb1 {
+	margin-bottom: 10px;
+}
+.mb2 {
+	margin-bottom: 20px;
+}
+.mb3 {
+	margin-bottom: 30px;
+}

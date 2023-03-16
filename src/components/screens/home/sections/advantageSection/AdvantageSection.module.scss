@@ -1,0 +1,37 @@
+@import "../../../../../assets/styles/var.scss";
+.root {
+	padding: 40px 0;
+	background-color: $title;
+	color: $white;
+	.wrap {
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	.item {
+		display: flex;
+
+		.box {
+			flex: 1;
+			padding-left: 20px;
+			min-width: 250px;
+			max-width: 320px;
+		}
+		h4 {
+			font-size: 16px;
+			font-weight: 700;
+			line-height: 20px;
+
+			min-height: 40px;
+		}
+		p {
+			font-size: 14px;
+		}
+	}
+    @media (max-width:890px) {
+        .wrap{
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+}

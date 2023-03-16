@@ -1,0 +1,20 @@
+.root {
+	position: relative;
+	height: 380px;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	&::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		top: 0;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+	}
+	@media (max-width: 370px) {
+        display: none;
+	}
+}

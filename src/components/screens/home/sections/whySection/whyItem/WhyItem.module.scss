@@ -1,0 +1,36 @@
+@import '../../../../../../assets/styles/var.scss';
+.root {
+	background: #f9f9f9;
+	box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.1);
+	border-radius: 14px;
+	padding: 22px 36px;
+	text-align: center;
+	width: 259px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	h4 {
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 19px;
+		text-transform: uppercase;
+		color: $title;
+        margin-bottom: 20px;
+	}
+	p {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 25px;
+		color: $text;
+	}
+	span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		width: 58px;
+		height: 58px;
+		background-color: $blue;
+        border-radius: 50%;
+        margin-bottom: 25px;
+	}
+}

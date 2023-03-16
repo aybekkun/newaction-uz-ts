@@ -1,0 +1,79 @@
+@import "../../../assets/styles/var.scss";
+
+.root {
+	color: $title;
+
+	.title {
+		cursor: pointer;
+		padding: 10px 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: #ffffff;
+		box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+		// border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		// border-top: 1px solid rgba(0, 0, 0, 0.1);
+		span {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 19px;
+		}
+	}
+	.content {
+		display: none;
+		position: relative;
+		visibility: hidden;
+		height: 0;
+		opacity: 0;
+		transition: 0.1s;
+	}
+	.button {
+		transition: all 0.2s ease-in;
+	}
+	&.active {
+		> .title {
+			> .button {
+				transform: rotate(90deg);
+			}
+		}
+		> .content {
+			display: block;
+			visibility: visible;
+			height: max-content;
+			opacity: 1;
+		}
+	}
+	.content {
+		.title {
+			padding-left: 30px;
+			padding-right: 25px;
+		}
+		.item {
+			padding-left: 40px;
+		}
+	}
+}
+
+.item {
+	a {
+		cursor: pointer;
+	}
+	background-color: #ffffff;
+	align-items: center;
+	display: flex;
+	padding: 10px 24px 10px 30px;
+
+	&.active {
+		background-color: $blue;
+		color: $white;
+	}
+	span {
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+	}
+	.icon {
+		margin-right: 10px;
+		font-size: 19px;
+	}
+}

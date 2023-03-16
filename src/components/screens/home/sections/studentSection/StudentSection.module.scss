@@ -1,0 +1,32 @@
+.root {
+	padding: 40px 0;
+	.wrap {
+		display: flex;
+		justify-content: space-between;
+	}
+	.video {
+		flex: 1;
+		max-width: 592px;
+		height: 333px;
+	}
+	.right {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	@media (max-width: 880px) {
+		.video {
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+		.wrap {
+			display: block;
+		}
+	}
+	@media (max-width: 430px) {
+		.right {
+			overflow: hidden;
+		}
+	}
+}

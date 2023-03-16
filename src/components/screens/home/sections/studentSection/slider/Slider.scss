@@ -1,0 +1,67 @@
+@import "../../../../../../assets/styles/var.scss";
+.swiper {
+	max-width: 377px;
+	padding: 0 10px;
+	text-align: center;
+	&-desc {
+		margin-bottom: 40px;
+	}
+
+	.slick-dots {
+		padding-top: 20px;
+		display: flex;
+		justify-content: center;
+		list-style-type: none;
+		li {
+			margin-right: 8px;
+			button {
+				display: block;
+				text-indent: -9999px;
+				border: none;
+				border-radius: 100%;
+				width: 12px;
+				height: 12px;
+				background-color: #efeeef;
+			}
+		}
+		.slick-active {
+			button {
+				background-color: $title;
+			}
+		}
+	}
+}
+.avatar {
+	display: flex;
+	justify-content: center;
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 20px;
+		object-fit: cover;
+	}
+	h4 {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 25px;
+		color: $title;
+	}
+	span {
+		display: block;
+		text-align: left;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 25px;
+		color: $gray;
+	}
+}
+@media (max-width: 430px) {
+	.swiper-slide {
+    width: 300px;
+    margin: 0 auto;
+    p{
+      font-size: 14px;
+    }
+	}
+}
