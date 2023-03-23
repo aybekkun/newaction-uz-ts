@@ -29,7 +29,7 @@ export const useIsToggled = (
 			const bool = lesson?.id === id || isActive?.id === id
 			setValue(bool)
 		}
-	}, [])
+	}, [materialId])
 }
 //
 // lesson?.sub_lessons.some((materials) =>

@@ -1,4 +1,4 @@
-import { ILesson, IMaterial } from "../../shared/types/course.types"
+import { IOneCourse } from "../../shared/types/course.types"
 
 export interface ISearchTerm {
 	limit?: number
@@ -26,24 +26,5 @@ export interface ICourse {
 }
 
 export interface IOneCourseResponse {
-    data: IOneCourse;
+	data: IOneCourse
 }
-
-export interface IOneCourse {
-    id:                  number;
-    title:               string;
-    description:         string;
-    price:               number;
-    status:              null;
-    started_at:          null;
-    finished_at:         null;
-    image:               string;
-    sub_lesson_2s_id:    number;
-    learners_count:      number;
-    rating_count:        number;
-    rating_mark_overall: number;
-    sub_lesson_2s:       IMaterial[];
-    lessons:             ILesson[];
-}
-
-

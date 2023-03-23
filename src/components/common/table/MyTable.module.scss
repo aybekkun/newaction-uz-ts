@@ -1,0 +1,53 @@
+@import "../../../assets/styles/var.scss";
+.root {
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+  }
+
+  /* Стили для строк таблицы */
+  table > tbody > tr {
+    border-top: 1px solid #dee2e6;
+  }
+
+  /* Стили для ячеек таблицы */
+  table > tbody > tr > td,
+  table > tbody > tr > th,
+  table > tfoot > tr > td,
+  table > tfoot > tr > th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0;
+  }
+
+  /* Стили для заголовков таблицы */
+  table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  /* Стили для таблицы с полосами */
+  table tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Стили для таблицы с выделенными строками */
+  table:hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+  }
+
+  /* Стили для таблицы с рамкой */
+  table {
+    border: 1px solid #dee2e6;
+  }
+
+  /* Стили для ячеек таблицы с рамкой */
+  table td,
+  table th {
+    border: 1px solid #dee2e6;
+  }
+
+}

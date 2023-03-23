@@ -5,9 +5,12 @@
 		grid-template-columns: 1fr 340px;
 		gap: 20px;
 		min-height: 100vh;
+		margin-bottom: 20px;
 	}
 	.right{
 		height: max-content;
+		background: #ffffff;
+		box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 	}
 	@media (max-width: 1000px) {
 		.wrap {

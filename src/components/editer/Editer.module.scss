@@ -1,0 +1,48 @@
+@import "../../assets/styles/var.scss";
+
+.video {
+ padding: 20px 0;
+ aspect-ratio: 3 / 2;
+}
+
+.hide {
+ .show {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  border: 1px solid $gray;
+  padding: 5px;
+  transition: 0.3s;
+ }
+ .show.active {
+  height: max-content;
+  visibility: visible;
+  opacity: 1;
+ }
+}
+
+.result {
+ display: none;
+ &.active {
+  display: block;
+ }
+ .box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+ }
+ .range {
+  width: 400px;
+  margin-right: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #ccc;
+  overflow: hidden;
+ }
+ .item {
+  height: 100%;
+  border-radius: 10px;
+  width: 80%;
+  background-color: #56fe06;
+ }
+}

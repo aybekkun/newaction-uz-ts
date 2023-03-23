@@ -34,7 +34,7 @@ const SignIn: FC = () => {
 	})
 
 	const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
-		await dispatch(login({ ...data }))
+		await dispatch(login({ phone: data.phone, password: data.password}))
 		reset()
 	}
 

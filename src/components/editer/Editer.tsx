@@ -17,11 +17,11 @@ import Table from "@editorjs/table"
 import Audio from "audio-editor-js"
 import YoutubeEmbed from "editorjs-youtube-embed"
 import { $authHost } from "../../api/interceptors"
-import { _BASE_URL } from "../../configs/api.config"
 
-const Editer = ({ blocks = [], handleSaveData = () => undefined }) => {
-	console.log(_BASE_URL)
-
+const Editer = ({
+	blocks = [],
+	handleSaveData = () => undefined,
+}) => {
 	useEffect(() => {
 		const editor = new EditorJS({
 			holder: "editer",

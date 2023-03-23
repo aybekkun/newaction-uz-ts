@@ -14,16 +14,17 @@ import {
 import storage from "redux-persist/lib/storage"
 
 import user from "./user/user.slice"
-
+import course from "./course/course.slice"
 const persistConfig = {
-	key: 'root',
+	key: "root",
 	version: 1,
 	storage,
 }
 const authReducer = persistReducer(persistConfig, user)
 const store = configureStore({
 	reducer: {
-		user:authReducer,
+		course,
+		user: authReducer,
 		toastr: toastrReducer,
 	},
 	devTools: true,

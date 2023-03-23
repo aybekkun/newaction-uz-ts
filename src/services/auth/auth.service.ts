@@ -1,41 +1,42 @@
 import { $authHost, $host } from "../../api/interceptors"
-
 import { IUserResponse } from "../../store/user/user.interface"
 
 import { removeTokenStorage, saveToStorage } from "./auth.helper"
 
+interface User {
+  phone: string
+  password: string
+  name: string
+}
 export const AuthService = {
-	async register(name: string, phone: string, password: string) {
-		const response = await $host.post<IUserResponse>("/auth/register", {
-			name,
-			phone,
-			password,
-		})
-		if (response.data.data.token) {
-			saveToStorage(response.data.data)
-		}
-		return response
-	},
-	async login(phone: string, password: string) {
-		const response = await $host.post<IUserResponse>("/auth/login", {
-			phone,
-			password,
-		})
-		if (response.data.data.token) {
-			saveToStorage(response.data.data)
-		}
-		return response
-	},
-	logout() {
-		removeTokenStorage()
-	},
-	async checkAuth() {
-		const response = await $authHost.post<IUserResponse>("/auth/check")
-		if (response.data.data.token) {
-			saveToStorage(response.data.data)
-		}
-		return response
-	},
+  async register({ phone, password, name }: User) {
+    const response = await $host.post<IUserResponse>("/auth/register", {
+      name: name,
+      phone: phone,
+      password: password,
+    })
+    if (response.data.data.token) {
+      saveToStorage(response.data.data)
+    }
+    return response
+  },
+  async login(phone: string, password: string) {
+    const response = await $host.post<IUserResponse>("/auth/login", {
+      phone,
+      password,
+    })
+    if (response.data.data.token) {
+      saveToStorage(response.data.data)
+    }
+    return response
+  },
+  logout() {
+    removeTokenStorage()
+  },
+  async checkAuth() {
+    const response = await $authHost.post<IUserResponse>("/auth/check")
+    return response
+  },
 }
 
 /* 

@@ -1,44 +1,38 @@
 import { FC } from "react"
-import { useQuery } from "react-query"
-import { Outlet, useParams } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 import Container from "../../../components/ui/container/Container"
 import H3 from "../../../components/ui/heading/H3"
-
-
+import SEO from "../../../utils/seo/SEO"
+import Logo from "../../ui/Logo/Logo"
 
 import styles from "./Course.module.scss"
 import Aside from "./aside/Aside"
-import { CourseService } from "../../../services/course/course.service"
+import Comments from "./comments/Comments"
+import { useCourse } from "./useCourse"
 
 const Course: FC = () => {
-	const { courseId } = useParams()
-	const {
-		data: course,
-		isLoading,
-		isError,
-	} = useQuery(
-		["Course by id", courseId],
-		() => CourseService.getByIdPublic(courseId),
-		{
-			enabled: !!courseId,
-			keepPreviousData: true,
-		}
-	)
+  const { course, isLoading, isError } = useCourse()
 
-	return (
-		<div className={styles.root}>
-			<Container>
-				<H3 mb={2}>Kurs</H3>
-			</Container>
-			<div>
-				<Container className={styles.wrap}>
-					<Outlet />
-					<Aside lessons={course?.lessons} isError={isError} isLoading={isLoading} />
-				</Container>
-			</div>
-		</div>
-	)
+  return (
+    <>
+      <SEO title={course?.title ?? "Course"} description={course?.description ?? "Englis tilin bepul organish"} />
+      <div className={styles.root}>
+        <Container>
+          <H3 mb={2}>Kurs</H3>
+        </Container>
+        <div>
+          <Container className={styles.wrap}>
+            <div className={styles.course}>
+              <Outlet />
+              <Comments />
+            </div>
+            <Aside lessons={course?.lessons} isError={isError} isLoading={isLoading} />
+          </Container>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Course
