@@ -13,6 +13,7 @@ import {
   ADMIN_PAGE,
   BILLING_PAGE,
   COMMENTS_PAGE,
+  FEEDBACK_PAGE,
   SETTINGS_PAGE,
   STUDENTS_PAGE,
   USERS_PAGE,
@@ -23,8 +24,6 @@ import styles from "./Sidebar.module.scss"
 
 const Sidebar: FC = () => {
   const { pathname } = useLocation()
-  console.log(pathname)
-
   return (
     <div className={styles.sidebar}>
       <div className={styles.top}>
@@ -60,6 +59,10 @@ const Sidebar: FC = () => {
         <NavLink to={COMMENTS_PAGE} className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}>
           <ChatBubbleOutlineOutlinedIcon />
           Комментарий
+        </NavLink>
+        <NavLink to={FEEDBACK_PAGE} className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}>
+          <ChatBubbleOutlineOutlinedIcon />
+          Комм. материалов
         </NavLink>
         <span className={styles.title}>Настройки</span>
         <NavLink to={SETTINGS_PAGE} className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}>

@@ -1,5 +1,6 @@
 @import "../../../assets/styles/var.scss";
 .root {
+  overflow-x: auto;
   table {
     width: 100%;
     max-width: 100%;

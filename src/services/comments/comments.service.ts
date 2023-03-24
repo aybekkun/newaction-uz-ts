@@ -4,13 +4,14 @@ import {
   ICourseCommentsCreate,
   ICourseCommentsParams,
   ICourseCommentsResponse,
+  ICourseCommentsUpdate,
   IMaterialsCommentsCreate,
   IMaterialsCommentsParams,
   IMaterialsCommentsResponse,
 } from "./commets.interface"
 
 export const CommentsService = {
-  async getCourseComments(params: ICourseCommentsParams, signal?: AbortSignal) {
+  async getCourseComments(params?: ICourseCommentsParams, signal?: AbortSignal) {
     const { data } = await $authHost.get<ICourseCommentsResponse>(`comments`, { params: params, signal })
     return data
   },
@@ -22,8 +23,8 @@ export const CommentsService = {
     const response = await $authHost.delete(`/comments/${id}`)
     return response
   },
-  async updateCourseComments(id: string | number, title: string) {
-    const response = await $authHost.put(`/comments/${id}`, { title })
+  async updateCourseComments(data: ICourseCommentsUpdate) {
+    const response = await $authHost.put(`/comments/${data.id}`, { message: data.message })
     return response
   },
   async getMaterialsComments(params: IMaterialsCommentsParams, signal?: AbortSignal) {
@@ -38,8 +39,8 @@ export const CommentsService = {
     const response = await $authHost.delete(`/feedbacks/${id}`)
     return response
   },
-  async updateMaterialsComments(id: string | number, title: string) {
-    const response = await $authHost.put(`/feedbacks/${id}`, { title })
+  async updateMaterialsComments(data: ICourseCommentsUpdate) {
+    const response = await $authHost.put(`/feedbacks/${data.id}`, { message: data.message })
     return response
   },
 }

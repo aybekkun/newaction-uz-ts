@@ -10,6 +10,7 @@ import Admins from "../components/screens/admin/screens/admins/Admins"
 import Billing from "../components/screens/admin/screens/billing/Billing"
 import Comments from "../components/screens/admin/screens/comments/Comments"
 import Edit from "../components/screens/admin/screens/edit/Edit"
+import Feedbacks from "../components/screens/admin/screens/feedbacks/Feedbacks"
 import Settings from "../components/screens/admin/screens/settings/Settings"
 import Students from "../components/screens/admin/screens/students/Students"
 import Users from "../components/screens/admin/screens/users/Users"
@@ -34,13 +35,14 @@ import {
   COURSES_PAGE,
   COURSE_PAGE,
   EDIT_PAGE,
+  FEEDBACK_PAGE,
   MAIN_PAGE,
   PROFILE_PAGE,
   SETTINGS_PAGE,
   SIGNIN_PAGE,
   SIGNUP_PAGE,
   STUDENTS_PAGE,
-  USERS_PAGE,
+  USERS_PAGE
 } from "../shared/constants/route"
 import { checkAuth } from "../store/user/user.actions"
 
@@ -136,6 +138,10 @@ const adminRoutes: IRoutes[] = [
   {
     path: USERS_PAGE,
     element: <Users />,
+  },
+  {
+    path: FEEDBACK_PAGE,
+    element: <Feedbacks />,
   },
   {
     path: "*",

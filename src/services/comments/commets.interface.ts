@@ -14,14 +14,20 @@ export interface ICourseCommentsResponse {
 }
 
 export interface ICourseCommentsParams {
-  course_id: string | number
-  user_id: string | number
+  course_id?: string | number
+  user_id?: string | number
+  limit?: number
+  page?: number
 }
 
 export interface ICourseCommentsCreate {
   course_id: string | number
   message: string
   rating: number
+}
+export interface ICourseCommentsUpdate {
+  message: string
+  id: string | number
 }
 
 export interface IMaterialsComment {
@@ -41,8 +47,10 @@ export interface IMaterialsCommentsResponse {
 }
 
 export interface IMaterialsCommentsParams {
-  sub_lesson_2_id: string | number
-  user_id: string | number
+  sub_lesson_2_id?: string | number
+  user_id?: string | number
+  limit?: number
+  page?: number
 }
 
 export interface IMaterialsCommentsCreate {

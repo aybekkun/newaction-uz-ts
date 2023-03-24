@@ -1,20 +1,29 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DatePicker } from "@mui/x-date-pickers/DatePicker"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
-import { Dayjs } from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
+import { useEffect, useState } from "react"
 
 type MyDateInputProps = {
   label: string
-  value: Dayjs
-  onChange: (val: Dayjs | null) => void
+  value: string
+  onChange: (val: string) => void
 }
 
 const MyDateInput = ({ label, value, onChange }: MyDateInputProps) => {
+  const [date, setDate] = useState<Dayjs | null>(dayjs(value))
+
+  const onChangeValue = (val: Dayjs | null) => {
+    setDate(val)
+    if (val) {
+      onChange(val?.format("YYYY-MM-DD"))
+    }
+  }
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label={label}
-        value={value}
+        value={value ? date : null}
         sx={{
           "& .MuiInputBase-root": {
             fontSize: "0.8rem", // Adjust font size
@@ -28,15 +37,15 @@ const MyDateInput = ({ label, value, onChange }: MyDateInputProps) => {
             marginBottom: "5px", // Adjust margin bottom
           },
           "& .MuiOutlinedInput-input": {
-            height:"0.5em",
+            height: "0.5em",
             // Adjust margin bottom
           },
-          "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root":{
-            transform: "translate(14px, 10px) scale(1)"
-          }
+          "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+            transform: "translate(14px, 10px) scale(1)",
+          },
         }}
         format={"DD-MM-YYYY"}
-        onChange={(newValue) => onChange(newValue)}
+        onChange={(newValue) => onChangeValue(newValue)}
       />
     </LocalizationProvider>
   )

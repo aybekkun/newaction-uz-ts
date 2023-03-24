@@ -19,4 +19,8 @@ export const OrderService = {
     const response = await $authHost.post(`/orders`, data)
     return response.data
   },
+  async delete(id: string | number) {
+    const response = await $authHost.delete(`/orders/${id}`)
+    return response
+  },
 }

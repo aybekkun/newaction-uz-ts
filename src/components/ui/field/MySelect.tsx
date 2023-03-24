@@ -1,23 +1,22 @@
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material"
-import { FC, useState } from "react"
+import { FC } from "react"
 
 type MySelectProps = {
   data: {
     name: string
     value: string
   }[]
+  value: string
+  onChange: (event: string) => void
 }
-const MySelect: FC<MySelectProps> = ({ data = [] }) => {
-  const [select, setSelect] = useState("")
-
+const MySelect: FC<MySelectProps> = ({ data = [], value, onChange }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setSelect(event.target.value)
+    onChange(event.target.value)
   }
-
   return (
-    <Select sx={{ width: 200 }} variant="outlined" size="small">
+    <Select sx={{ width: 200 }} defaultValue=""  value={value} onChange={handleChange} variant="outlined" size="small">
       {data.map((item) => (
-        <MenuItem value={item.value}>{item.name}</MenuItem>
+        <MenuItem key={item.name} value={item.value}>{item.name}</MenuItem>
       ))}
     </Select>
   )
