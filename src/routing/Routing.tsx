@@ -9,13 +9,14 @@ import Add from "../components/screens/admin/screens/add/Add"
 import Admins from "../components/screens/admin/screens/admins/Admins"
 import Billing from "../components/screens/admin/screens/billing/Billing"
 import Comments from "../components/screens/admin/screens/comments/Comments"
+import AddCourse from "../components/screens/admin/screens/courses/addCourse/AddCourse"
 import Edit from "../components/screens/admin/screens/edit/Edit"
 import Feedbacks from "../components/screens/admin/screens/feedbacks/Feedbacks"
-import Settings from "../components/screens/admin/screens/settings/Settings"
 import Students from "../components/screens/admin/screens/students/Students"
 import Users from "../components/screens/admin/screens/users/Users"
 import Material from "../components/screens/course/material/Material"
 import useAppDispatch from "../hooks/useAppDispatch.hook"
+import { useAuth } from "../hooks/useAuth.hooks"
 import Error404 from "../pages/404/404"
 import SignIn from "../pages/Auth/SignIn"
 import SignUp from "../pages/Auth/SignUp"
@@ -25,6 +26,7 @@ import CoursesPage from "../pages/Courses/CoursesPage"
 import HomePage from "../pages/Home/HomPage"
 import ProfilePage from "../pages/Profile/ProfilePage"
 import {
+  ADD_COURSE_PAGE,
   ADD_PAGE,
   ADMINS_PAGE,
   ADMIN_PAGE,
@@ -38,11 +40,10 @@ import {
   FEEDBACK_PAGE,
   MAIN_PAGE,
   PROFILE_PAGE,
-  SETTINGS_PAGE,
   SIGNIN_PAGE,
   SIGNUP_PAGE,
   STUDENTS_PAGE,
-  USERS_PAGE
+  USERS_PAGE,
 } from "../shared/constants/route"
 import { checkAuth } from "../store/user/user.actions"
 
@@ -104,16 +105,18 @@ const adminRoutes: IRoutes[] = [
   {
     path: ADMIN_PAGE,
     element: <Admin />,
-    children: [
-      {
-        path: ADD_PAGE,
-        element: <Add />,
-      },
-      {
-        path: EDIT_PAGE,
-        element: <Edit />,
-      },
-    ],
+  },
+  {
+    path: ADD_COURSE_PAGE,
+    element: <AddCourse />,
+  },
+  {
+    path: ADD_PAGE + "/:id",
+    element: <Add />,
+  },
+  {
+    path: EDIT_PAGE + "/:id",
+    element: <Edit />,
   },
   {
     path: BILLING_PAGE,
@@ -131,10 +134,7 @@ const adminRoutes: IRoutes[] = [
     path: ADMINS_PAGE,
     element: <Admins />,
   },
-  {
-    path: SETTINGS_PAGE,
-    element: <Settings />,
-  },
+
   {
     path: USERS_PAGE,
     element: <Users />,
@@ -151,7 +151,7 @@ const adminRoutes: IRoutes[] = [
 
 const Routing = () => {
   const dispatch = useAppDispatch()
-
+  const { isAdmin } = useAuth()
   useEffect(() => {
     dispatch(checkAuth())
   }, [])
@@ -177,15 +177,17 @@ const Routing = () => {
               </Route>
             ))}
           </Route>
-          <Route path={ADMIN_PAGE} element={<AdminLayout />}>
-            {adminRoutes.map((route, i) => (
-              <Route key={i} path={route.path} element={route.element}>
-                {route.children?.map((child, i) => (
-                  <Route key={i} path={child.path} element={child.element} />
-                ))}
-              </Route>
-            ))}
-          </Route>
+          {isAdmin && (
+            <Route path={ADMIN_PAGE} element={<AdminLayout />}>
+              {adminRoutes.map((route, i) => (
+                <Route key={i} path={route.path} element={route.element}>
+                  {route.children?.map((child, i) => (
+                    <Route key={i} path={child.path} element={child.element} />
+                  ))}
+                </Route>
+              ))}
+            </Route>
+          )}
         </Routes>
       </BrowserRouter>
     </>

@@ -12,16 +12,20 @@ type ActionsProps = {
 }
 const Actions: FC<ActionsProps> = ({ id, message }) => {
   const { deleteComments, isLoading, refetch } = useDeleteComment()
+
+  const handleDelete = async () => {
+    await deleteComments(id)
+    refetch()
+  }
   const onDelete = () => {
     toastr.confirm("Удалить", {
       onOk() {
-        deleteComments(id)
-        refetch()
+        handleDelete()
       },
     })
   }
   return (
-    <Stack spacing={1} direction="row">
+    <Stack spacing={1} flexWrap="wrap" direction="row">
       <Popup id={id} message={message} />
       <Tooltip title="Удалить">
         <IconButton onClick={onDelete} disabled={isLoading} color="error" size="small">

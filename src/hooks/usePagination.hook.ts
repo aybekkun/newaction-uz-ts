@@ -5,5 +5,6 @@ export const usePagination = () => {
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
-  return { page, handleChangePage }
+
+  return { page, handleChangePage,setPage }
 }

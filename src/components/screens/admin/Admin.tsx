@@ -1,12 +1,10 @@
-import dayjs, { Dayjs } from "dayjs"
-import { FC, useState } from "react"
+import { FC } from "react"
+import { Outlet } from "react-router-dom"
 
-import { IColumns } from "../../../shared/types/columns.type"
-import MyTable from "../../common/table/MyTable"
-import MyDateInput from "../../ui/field/MyDateInput"
+import Courses from "./screens/courses/Courses"
 
 const Admin: FC = () => {
-  return <></>
+  return <Courses />
 }
 
 export default Admin

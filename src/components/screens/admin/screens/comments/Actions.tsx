@@ -12,11 +12,15 @@ type ActionsProps = {
 }
 const Actions: FC<ActionsProps> = ({ id, message }) => {
   const { deleteComments, isLoading, refetch } = useDeleteComment()
+
+  const handleDelete = async () => {
+    await deleteComments(id)
+    refetch()
+  }
   const onDelete = () => {
     toastr.confirm("Удалить", {
       onOk() {
-        deleteComments(id)
-        refetch()
+        handleDelete()
       },
     })
   }

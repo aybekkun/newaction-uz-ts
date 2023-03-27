@@ -4,4 +4,6 @@ export interface ISearch {
   status?: boolean | string | "true" | "false"
   limit?: number
   page?: number
+  name?: string
+  phone?: string
 }

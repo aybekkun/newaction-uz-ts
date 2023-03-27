@@ -9,9 +9,10 @@ export interface IOrderCreate {
 }
 
 export const OrderService = {
-  async getAll(searchTerm: ISearch) {
+  async getAll(searchTerm: ISearch, signal?: AbortSignal) {
     const { data } = await $authHost.get<IOrderResponse>(`/orders`, {
       params: searchTerm ? searchTerm : {},
+      signal,
     })
     return data
   },

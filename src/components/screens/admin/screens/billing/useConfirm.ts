@@ -16,10 +16,10 @@ export const useConfirm = () => {
       toastr.error("Oops, something get wrong", String(error.message))
     },
   })
-  const refetch = () => {
+ const refetch = () => {
     setTimeout(() => {
       queryClient.refetchQueries("Billing")
     }, 1500)
-  }
+  } 
   return { confirm, isLoading, refetch }
 }

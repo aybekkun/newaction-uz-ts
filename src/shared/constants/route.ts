@@ -16,6 +16,6 @@ export const USERS_PAGE = ADMIN_PAGE + "/users"
 export const ADMINS_PAGE = ADMIN_PAGE + "/admins"
 export const SETTINGS_PAGE = ADMIN_PAGE + "/settings"
 export const FEEDBACK_PAGE = ADMIN_PAGE + "/feedback"
-
+export const ADD_COURSE_PAGE = ADMIN_PAGE + "/course"
 export const ADD_PAGE = ADMIN_PAGE + "/add"
 export const EDIT_PAGE = ADMIN_PAGE + "/edit"

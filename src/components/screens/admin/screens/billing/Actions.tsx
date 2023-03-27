@@ -19,19 +19,27 @@ const Actions: FC<ActionsProps> = ({ order_id, course_id, user_id, user_name, st
   const { confirm, isLoading, refetch } = useConfirm()
   const { cancel } = useCancel()
 
+  const handleConfirm = async () => {
+    await confirm({ user_id: user_id, course_id: course_id })
+    refetch()
+  }
+
+  const handleCancel = async () => {
+    await cancel(order_id)
+    refetch()
+  }
   const onConfirm = () => {
     toastr.confirm("Дать доступ", {
       onOk() {
-        confirm({ user_id: user_id, course_id: course_id })
-        refetch()
+        handleConfirm()
       },
     })
   }
+
   const onCancel = () => {
     toastr.confirm("Удалить заказ", {
       onOk() {
-        cancel(order_id);
-        refetch()
+        handleCancel()
       },
     })
   }

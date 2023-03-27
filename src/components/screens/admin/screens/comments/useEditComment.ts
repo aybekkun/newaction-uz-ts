@@ -6,7 +6,7 @@ import { CommentsService } from "./../../../../../services/comments/comments.ser
 import { ICourseCommentsUpdate } from "./../../../../../services/comments/commets.interface"
 
 export const useEditComment = () => {
-  const queryClient = useQueryClient()
+ const queryClient = useQueryClient() 
   const { mutate: updateComments, isLoading } = useMutation(
     async (data: ICourseCommentsUpdate) => CommentsService.updateCourseComments(data),
     {

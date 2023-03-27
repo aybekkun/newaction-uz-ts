@@ -17,7 +17,7 @@ const Order: FC = () => {
   const dispatch = useAppDispatch()
   const { isThereCourse, isThereOrder, courseId } = useIsThere()
   const navigate = useNavigate()
-  const { isAuth, user } = useAuth()
+  const {  user } = useAuth()
   const { mutate, isLoading } = useMutation(async (data: IOrderCreate) => OrderService.create(data), {
     onSuccess: (data) => {
       toastr.success("Order", "Succesfully created")

@@ -3,7 +3,6 @@ import { FC, useReducer } from "react"
 import { useQuery } from "react-query"
 
 import { usePagination } from "../../../../../hooks/usePagination.hook"
-import { useSkeleton } from "../../../../../hooks/useSkeleton"
 import { OrderService } from "../../../../../services/order/order.service"
 import MyPagination from "../../../../common/MyPagination/MyPagination"
 import Empty from "../../../../ui/error/Empty"
@@ -34,7 +33,7 @@ const Billing: FC = () => {
   const { page, handleChangePage } = usePagination()
   const { data, isLoading, isError } = useQuery(
     ["Billing", page, form.to, form.from, form.status],
-    () => OrderService.getAll({ page: page, limit: 10, ...form }),
+    async ({ signal }) => OrderService.getAll({ page: page, limit: 10, ...form }, signal),
     { keepPreviousData: true, enabled: !!page && !!form, refetchOnWindowFocus: true }
   )
 

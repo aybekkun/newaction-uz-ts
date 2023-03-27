@@ -1,4 +1,4 @@
-import { Avatar, Button, Rating } from "@mui/material"
+import { Avatar, Button } from "@mui/material"
 import { FC } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from "react-query"
@@ -35,7 +35,7 @@ const CreateComments: FC<CreateCommentsProps> = ({ refetch }) => {
   const onSubmit: SubmitHandler<FormType> = async (data) => {
     reset()
     if (materialId) {
-      mutate({ sub_lesson_2_id: materialId, message: data.message })
+      await mutate({ sub_lesson_2_id: materialId, message: data.message })
       setTimeout(() => {
         refetch()
       }, 1500)

@@ -1,0 +1,10 @@
+@import "../../../../../../assets/styles/var.scss";
+.root {
+  form {
+    max-width: 400px;
+  }
+  textarea {
+    resize: none;
+    height: 120px;
+  }
+}

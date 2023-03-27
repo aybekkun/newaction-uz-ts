@@ -21,7 +21,7 @@ type CreateCommentsProps = {
 const CreateComments: FC<CreateCommentsProps> = ({ refetch }) => {
   const { courseId } = useParams()
   const { user } = useAuth()
-  const { mutate } = useCreateCourseComments()
+  const { mutate, isLoading } = useCreateCourseComments()
   const {
     handleSubmit,
     control,
@@ -37,7 +37,7 @@ const CreateComments: FC<CreateCommentsProps> = ({ refetch }) => {
   const onSubmit: SubmitHandler<FormType> = async (data) => {
     reset()
     if (courseId) {
-      mutate({ course_id: courseId, message: data.message, rating: data.rating })
+      await mutate({ course_id: courseId, message: data.message, rating: data.rating })
       setTimeout(() => {
         refetch()
       }, 1500)
@@ -79,7 +79,7 @@ const CreateComments: FC<CreateCommentsProps> = ({ refetch }) => {
             )}
             rules={{ minLength: 1, maxLength: 300, required: true }}
           />
-          <Button disabled={!isValid} type="submit">
+          <Button disabled={!isValid || isLoading} type="submit">
             Send
           </Button>
         </div>

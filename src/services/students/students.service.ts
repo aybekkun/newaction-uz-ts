@@ -1,12 +1,13 @@
 import { $authHost } from "../../api/interceptors"
 
 import { ISearch } from "./../../shared/types/search.types"
-import { IStundentCreate } from "./students.interface"
+import { IStudentResponse, IStundentCreate } from "./students.interface"
 
 export const StudentsService = {
-  async getAll(searchTerm: ISearch) {
-    const { data } = await $authHost.get(`/students`, {
+  async getAll(searchTerm: ISearch, signal?: AbortSignal) {
+    const { data } = await $authHost.get<IStudentResponse>(`/students`, {
       params: searchTerm ? searchTerm : {},
+      signal,
     })
     return data
   },

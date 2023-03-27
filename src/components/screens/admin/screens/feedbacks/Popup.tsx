@@ -32,8 +32,8 @@ const Popup: FC<PopupProps> = ({ id, message }) => {
     setText(e.target.value)
   }
 
-  const onEdit = () => {
-    updateComments({ id: id, message: text })
+  const onEdit = async () => {
+    await updateComments({ id: id, message: text })
     refetch()
     handleClose()
   }
