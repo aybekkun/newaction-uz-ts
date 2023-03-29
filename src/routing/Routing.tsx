@@ -1,13 +1,12 @@
-
-import { lazy, Suspense, useEffect } from "react"
+import { Suspense, lazy, useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import MySpinner from "../components/ui/spinner/MySpinner"
 
+import MySpinner from "../components/ui/spinner/MySpinner"
 import useAppDispatch from "../hooks/useAppDispatch.hook"
 import { useAuth } from "../hooks/useAuth.hooks"
 // import AdminLayout from "../components/layout/AdminLayout/AdminLayout"
 // import AuthLayout from "../components/layout/AuthLayout/AuthLayout"
-// import MainLayout from "../components/layout/MainLayout/MainLayout"
+import MainLayout from "../components/layout/MainLayout/MainLayout"
 // import Admin from "../components/screens/admin/Admin"
 // import Add from "../components/screens/admin/screens/add/Add"
 // import Admins from "../components/screens/admin/screens/admins/Admins"
@@ -54,7 +53,6 @@ import { checkAuth } from "../store/user/user.actions"
 
 const AdminLayout = lazy(() => import("../components/layout/AdminLayout/AdminLayout"))
 const AuthLayout = lazy(() => import("../components/layout/AuthLayout/AuthLayout"))
-const MainLayout = lazy(() => import("../components/layout/MainLayout/MainLayout"))
 const Admin = lazy(() => import("../components/screens/admin/Admin"))
 const Add = lazy(() => import("../components/screens/admin/screens/add/Add"))
 const Admins = lazy(() => import("../components/screens/admin/screens/admins/Admins"))
@@ -191,21 +189,10 @@ const Routing = () => {
   return (
     <>
       <BrowserRouter>
-      <Routes>
-          <Route
-            path={MAIN_PAGE}
-            element={
-              <Suspense fallback={<MySpinner />}>
-                <MainLayout />
-              </Suspense>
-            }
-          >
+        <Routes>
+          <Route path={MAIN_PAGE} element={<MainLayout />}>
             {routes.map((route, i) => (
-              <Route
-                key={i}
-                path={route.path}
-                element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}
-              >
+              <Route key={i} path={route.path} element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}>
                 {route.children?.map((child, i) => (
                   <Route
                     key={i}
@@ -225,11 +212,7 @@ const Routing = () => {
             }
           >
             {authRoutes.map((route, i) => (
-              <Route
-                key={i}
-                path={route.path}
-                element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}
-              >
+              <Route key={i} path={route.path} element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}>
                 {route.children?.map((child, i) => (
                   <Route
                     key={i}
