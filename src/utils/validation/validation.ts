@@ -19,7 +19,7 @@ export const nameValidation = {
 export const phoneValidation = {
 	required: REQUIRED_FIELD,
 	validate: (value: string) => {
-		if (value.length < 12) {
+		if (value.length < 13) {
 			return "+998 99 999 00 00 formatta bolishi shart"
 		}
 
@@ -30,8 +30,8 @@ export const phoneValidation = {
 export const passwordValidation = {
 	required: REQUIRED_FIELD,
 	validate: (value: string) => {
-		if (value.length < 9) {
-			return "Parol 9 simvoldan kam bolmasin"
+		if (value.length < 8) {
+			return "Parol 8 simvoldan kam bolmasin"
 		}
 		if (value.includes(" ")) {
 			return "Parolda probel bolmasin"

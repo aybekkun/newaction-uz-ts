@@ -11,8 +11,9 @@ type SEOProps = {
   title: string
   description?: string
   type?: string
+  keywords?: string
 }
-const SEO: FC<SEOProps> = ({ title, description, type = "article" }) => {
+const SEO: FC<SEOProps> = ({ title, description, keywords = "Englis tili organish", type = "article" }) => {
   const { pathname } = useLocation()
   const currentUrl = "https://newaction.uz/" + pathname
   return (
@@ -24,6 +25,7 @@ const SEO: FC<SEOProps> = ({ title, description, type = "article" }) => {
           <meta name="description" content={description} />
           {/* End standard metadata tags */}
           {/* Facebook tags */}
+          <meta property="keywords" content={keywords} />
           <meta property="og:type" content={type} />
           <meta property="og:title" content={titleMerge(title)} />
           <meta property="og:description" content={onlyText(description, 197)} />

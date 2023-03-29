@@ -5,6 +5,8 @@ import authBg from "./reg-bg.webp"
 import Sidebar from "./sidebar/Sidebar"
 
 const AuthLayout: FC = () => {
+
+	
 	return (
 		<div className={styles.root}>
 			<div className={styles.left} style={{ backgroundImage: `url(${authBg})` }}>

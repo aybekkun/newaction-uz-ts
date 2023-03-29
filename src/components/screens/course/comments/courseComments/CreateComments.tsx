@@ -25,7 +25,7 @@ const CreateComments: FC<CreateCommentsProps> = ({ refetch }) => {
   const {
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { isValid },
     reset,
   } = useForm<FormType>({
     mode: "onChange",

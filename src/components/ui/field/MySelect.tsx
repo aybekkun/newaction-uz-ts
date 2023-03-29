@@ -8,15 +8,25 @@ type MySelectProps = {
   }[]
   value: string
   onChange: (event: string) => void
-}
+} 
 const MySelect: FC<MySelectProps> = ({ data = [], value, onChange }) => {
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value)
   }
   return (
-    <Select sx={{ width: 200 }} defaultValue=""  value={value} onChange={handleChange} variant="outlined" size="small">
+    <Select
+ 
+      sx={{ width: 200 }}
+      defaultValue=""
+      value={value}
+      onChange={handleChange}
+      variant="outlined"
+      size="small"
+    >
       {data.map((item) => (
-        <MenuItem key={item.name} value={item.value}>{item.name}</MenuItem>
+        <MenuItem key={item.name} value={item.value}>
+          {item.name}
+        </MenuItem>
       ))}
     </Select>
   )

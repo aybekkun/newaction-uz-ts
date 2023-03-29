@@ -57,7 +57,7 @@ const CourseForm: FC<CourseFormProps> = ({ titleCourse, descriptionCourse, price
   }
   return (
     <div className={styles.root}>
-      <form onSubmit={onSubmit}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <H4>Заголовок</H4>
         <TextField
           inputProps={{ maxLength: 100 }}

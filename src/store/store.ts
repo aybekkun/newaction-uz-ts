@@ -4,6 +4,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, pers
 // eslint-disable-next-line
 import storage from "redux-persist/lib/storage"
 
+import add from "./add/add.slice"
 import course from "./course/course.slice"
 import update from "./update/update.slice"
 import user from "./user/user.slice"
@@ -17,6 +18,7 @@ const authReducer = persistReducer(persistConfig, user)
 const store = configureStore({
   reducer: {
     course,
+    add,
     update,
     user: authReducer,
     toastr: toastrReducer,
@@ -25,11 +27,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, "your/action/type"],
-        // Ignore these field paths in all actions
-        ignoredActionPaths: ["payload.options.onOk", "@ReduxToastr/confirm/SHOW"],
-        // Ignore these paths in the state
-        ignoredPaths: ["payload.options.onOk","@ReduxToastr/confirm/SHOW"],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 })

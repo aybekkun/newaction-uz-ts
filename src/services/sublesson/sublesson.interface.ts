@@ -4,8 +4,9 @@ export interface ISubLessonCreate {
 	lesson_id: number | string
 }
 
-export interface ISubLessonUpdate extends Partial<ISubLessonCreate> {
+export interface ISubLessonUpdate {
 	id: string | number
+	name:string
 }
 
 export interface ISubLessonResponse {

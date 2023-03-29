@@ -20,6 +20,10 @@ export const MaterialService = {
     const response = await $authHost.post(`/subLessons2`, data)
     return response
   },
+  async createTest(data: IMaterialCreate) {
+    const response = await $authHost.post(`/tests`, data)
+    return response
+  },
   async update({ id, ...data }: IMaterialUpdate) {
     const response = await $authHost.put(`/subLessons2/${id}`, data)
     return response

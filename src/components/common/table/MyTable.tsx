@@ -1,5 +1,3 @@
-import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 
 import { IColumns } from "../../../shared/types/columns.type"
 
@@ -14,30 +12,30 @@ type MyTableProps<T> = {
 const MyTable = <T extends {}>({ source, columns, currentPage = 1, loading = false }: MyTableProps<T>) => {
   return (
     <div className={styles.root}>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>№</Th>
+      <table>
+        <thead>
+          <tr>
+            <th>№</th>
             {columns.map((column, i: number) => (
-              <Th key={i}>{column.title}</Th>
+              <td key={i}>{column.title}</td>
             ))}
-          </Tr>
-        </Thead>
-        <Tbody>
+          </tr>
+        </thead>
+        <tbody>
           {source.map((row: T, i: number) => (
-            <Tr key={i}>
-              <Td>{(currentPage - 1) * 10 + i + 1}</Td>
+            <tr key={i}>
+              <td>{(currentPage - 1) * 10 + i + 1}</td>
               {columns.map((column: any, i) => (
-                <Td key={i}>
+                <td key={i}>
                   {column.render
                     ? column.render(row[`${column.dataIndex}` as keyof T], row)
                     : row[`${column.dataIndex}` as keyof T]}
-                </Td>
+                </td>
               ))}
-            </Tr>
+            </tr>
           ))}
-        </Tbody>
-      </Table>
+        </tbody>
+      </table>
     </div>
   )
 }

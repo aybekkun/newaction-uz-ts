@@ -6,19 +6,31 @@ import { Link } from "react-router-dom"
 import useAppDispatch from "../../../../hooks/useAppDispatch.hook"
 import { useAuth } from "../../../../hooks/useAuth.hooks"
 import useToggle from "../../../../hooks/useToggle"
-import { ADMIN_PAGE, CONTACT_PAGE, COURSES_PAGE, PROFILE_PAGE, SIGNIN_PAGE, SIGNUP_PAGE } from "../../../../shared/constants/route"
+import {
+  ADMIN_PAGE,
+  CONTACT_PAGE,
+  COURSES_PAGE,
+  PROFILE_PAGE,
+  SIGNIN_PAGE,
+  SIGNUP_PAGE
+} from "../../../../shared/constants/route"
 import { logout } from "../../../../store/user/user.actions"
+import { onScrollTop } from "../../../../utils/onScrollTop"
+import Container from "../../../ui/container/Container"
 import Logo from "../../../ui/Logo/Logo"
 import MyButton from "../../../ui/MyButton/MyButton"
-import Container from "../../../ui/container/Container"
 
 import styles from "./Header.module.scss"
 import MenuButton from "./MenuButton"
 
 const Header: FC = () => {
   const dispatch = useAppDispatch()
-  const [open, toggle] = useToggle()
+  const [open, toggle, setValue] = useToggle()
   const { isAuth, isAdmin } = useAuth()
+  const onClickLink = () => {
+    setValue(false)
+    onScrollTop()
+  }
 
   return (
     <header className={styles.root}>
@@ -30,17 +42,27 @@ const Header: FC = () => {
           })}
         >
           <nav>
-            <Link to={"/"}>Home</Link>
+            <Link onClick={onClickLink} to={"/"}>
+              Home
+            </Link>
             {/* 				<Link to={"/"}>About</Link> */}
-            <Link to={COURSES_PAGE}>Courses</Link>
-            <Link to={"/"}>Extra Courses</Link>
-            <Link to={CONTACT_PAGE}>Contact</Link>
+            <Link onClick={onClickLink} to={COURSES_PAGE}>
+              Courses
+            </Link>
+            {/*   <Link to={"/"}>Extra Courses</Link> */}
+            <Link onClick={onClickLink} to={CONTACT_PAGE}>
+              Contact
+            </Link>
             {isAuth && <Link to={PROFILE_PAGE}>Profile</Link>}
           </nav>
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                {isAdmin && <Link to={ADMIN_PAGE}>Admin</Link>}
+                {isAdmin && (
+                  <Link onClick={onClickLink} to={ADMIN_PAGE}>
+                    Admin
+                  </Link>
+                )}
                 <Button
                   onClick={() => dispatch(logout())}
                   className={styles.login}
@@ -54,8 +76,10 @@ const Header: FC = () => {
               </>
             ) : (
               <>
-                <Link to={SIGNUP_PAGE}>Sign Up</Link>
-                <Link to={SIGNIN_PAGE}>
+                <Link onClick={onClickLink} to={SIGNUP_PAGE}>
+                  Sign Up
+                </Link>
+                <Link onClick={onClickLink} to={SIGNIN_PAGE}>
                   <MyButton
                     className={styles.login}
                     sx={{

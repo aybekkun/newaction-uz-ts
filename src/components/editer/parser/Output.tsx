@@ -52,8 +52,25 @@ const Output = ({ block }) => {
         <div style={{ overflowX: "auto", marginBottom: "20px" }}>
           <table border={1}>
             <tbody>
-              {block.data.content.map((tr, i) => (
-                <tr key={i}>
+              {block.data.content.map((tr, i) => {
+                if(i ===0){
+                  return <tr key={i}>
+                    {tr.map((td, i) => (
+                        <th
+                            style={{
+                              minWidth: "100px",
+                              padding: "8px 15px",
+                              borderRadius: "2px",
+                              textAlign: "left",
+                            }}
+                            key={i}
+                        >
+                          {td ? parse(td) : ""}
+                        </th>
+                    ))}
+                  </tr>
+                }
+                return <tr key={i}>
                   {tr.map((td, i) => (
                     <td
                       style={{
@@ -68,7 +85,7 @@ const Output = ({ block }) => {
                     </td>
                   ))}
                 </tr>
-              ))}
+              })}
             </tbody>
           </table>
         </div>

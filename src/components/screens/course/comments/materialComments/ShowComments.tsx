@@ -1,7 +1,7 @@
-import { Avatar, Rating } from "@mui/material"
-import { FC } from "react"
+import { Avatar } from "@mui/material";
 import parse from "html-react-parser";
-import styles from "../Comments.module.scss"
+import { FC } from "react";
+import styles from "../Comments.module.scss";
 
 type ShowCommentsProps = {
   user_name: string

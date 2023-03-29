@@ -1,7 +1,5 @@
-import { Rating, TextField } from "@mui/material"
 import { FC } from "react"
 
-import styles from "../Comments.module.scss"
 
 import CreateComments from "./CreateComments"
 import ShowComments from "./ShowComments"

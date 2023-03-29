@@ -1,30 +1,34 @@
-import { useEffect } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-import AdminLayout from "../components/layout/AdminLayout/AdminLayout"
-import AuthLayout from "../components/layout/AuthLayout/AuthLayout"
-import MainLayout from "../components/layout/MainLayout/MainLayout"
-import Admin from "../components/screens/admin/Admin"
-import Add from "../components/screens/admin/screens/add/Add"
-import Admins from "../components/screens/admin/screens/admins/Admins"
-import Billing from "../components/screens/admin/screens/billing/Billing"
-import Comments from "../components/screens/admin/screens/comments/Comments"
-import AddCourse from "../components/screens/admin/screens/courses/addCourse/AddCourse"
-import Edit from "../components/screens/admin/screens/edit/Edit"
-import Feedbacks from "../components/screens/admin/screens/feedbacks/Feedbacks"
-import Students from "../components/screens/admin/screens/students/Students"
-import Users from "../components/screens/admin/screens/users/Users"
-import Material from "../components/screens/course/material/Material"
+import { lazy, Suspense, useEffect } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import MySpinner from "../components/ui/spinner/MySpinner"
+
 import useAppDispatch from "../hooks/useAppDispatch.hook"
 import { useAuth } from "../hooks/useAuth.hooks"
-import Error404 from "../pages/404/404"
-import SignIn from "../pages/Auth/SignIn"
-import SignUp from "../pages/Auth/SignUp"
-import ContactPage from "../pages/Contact/ContactPage"
-import CoursePage from "../pages/Course/CoursePage"
-import CoursesPage from "../pages/Courses/CoursesPage"
-import HomePage from "../pages/Home/HomPage"
-import ProfilePage from "../pages/Profile/ProfilePage"
+// import AdminLayout from "../components/layout/AdminLayout/AdminLayout"
+// import AuthLayout from "../components/layout/AuthLayout/AuthLayout"
+// import MainLayout from "../components/layout/MainLayout/MainLayout"
+// import Admin from "../components/screens/admin/Admin"
+// import Add from "../components/screens/admin/screens/add/Add"
+// import Admins from "../components/screens/admin/screens/admins/Admins"
+// import Billing from "../components/screens/admin/screens/billing/Billing"
+// import Comments from "../components/screens/admin/screens/comments/Comments"
+// import AddCourse from "../components/screens/admin/screens/courses/addCourse/AddCourse"
+// import Edit from "../components/screens/admin/screens/edit/Edit"
+// import Feedbacks from "../components/screens/admin/screens/feedbacks/Feedbacks"
+// import MaterialEdit from "../components/screens/admin/screens/materialEdit/MaterialEdit"
+// import Students from "../components/screens/admin/screens/students/Students"
+// import Users from "../components/screens/admin/screens/users/Users"
+// import Material from "../components/screens/course/material/Material"
+// import Error404 from "../pages/404/404"
+// import SignIn from "../pages/Auth/SignIn"
+// import SignUp from "../pages/Auth/SignUp"
+// import ContactPage from "../pages/Contact/ContactPage"
+// import CoursePage from "../pages/Course/CoursePage"
+// import CoursesPage from "../pages/Courses/CoursesPage"
+// import HomePage from "../pages/Home/HomPage"
+// import ProfilePage from "../pages/Profile/ProfilePage"
+// const AdminLayout = lazy(()=>import("../components/layout/AdminLayout/AdminLayout"))
 import {
   ADD_COURSE_PAGE,
   ADD_PAGE,
@@ -39,6 +43,7 @@ import {
   EDIT_PAGE,
   FEEDBACK_PAGE,
   MAIN_PAGE,
+  MATERIAL_EDIT,
   PROFILE_PAGE,
   SIGNIN_PAGE,
   SIGNUP_PAGE,
@@ -46,6 +51,30 @@ import {
   USERS_PAGE,
 } from "../shared/constants/route"
 import { checkAuth } from "../store/user/user.actions"
+
+const AdminLayout = lazy(() => import("../components/layout/AdminLayout/AdminLayout"))
+const AuthLayout = lazy(() => import("../components/layout/AuthLayout/AuthLayout"))
+const MainLayout = lazy(() => import("../components/layout/MainLayout/MainLayout"))
+const Admin = lazy(() => import("../components/screens/admin/Admin"))
+const Add = lazy(() => import("../components/screens/admin/screens/add/Add"))
+const Admins = lazy(() => import("../components/screens/admin/screens/admins/Admins"))
+const Billing = lazy(() => import("../components/screens/admin/screens/billing/Billing"))
+const Comments = lazy(() => import("../components/screens/admin/screens/comments/Comments"))
+const AddCourse = lazy(() => import("../components/screens/admin/screens/courses/addCourse/AddCourse"))
+const Edit = lazy(() => import("../components/screens/admin/screens/edit/Edit"))
+const Feedbacks = lazy(() => import("../components/screens/admin/screens/feedbacks/Feedbacks"))
+const MaterialEdit = lazy(() => import("../components/screens/admin/screens/materialEdit/MaterialEdit"))
+const Students = lazy(() => import("../components/screens/admin/screens/students/Students"))
+const Users = lazy(() => import("../components/screens/admin/screens/users/Users"))
+const Material = lazy(() => import("../components/screens/course/material/Material"))
+const Error404 = lazy(() => import("../pages/404/404"))
+const SignIn = lazy(() => import("../pages/Auth/SignIn"))
+const SignUp = lazy(() => import("../pages/Auth/SignUp"))
+const ContactPage = lazy(() => import("../pages/Contact/ContactPage"))
+const CoursePage = lazy(() => import("../pages/Course/CoursePage"))
+const CoursesPage = lazy(() => import("../pages/Courses/CoursesPage"))
+const HomePage = lazy(() => import("../pages/Home/HomPage"))
+const ProfilePage = lazy(() => import("../pages/Profile/ProfilePage"))
 
 interface IRoutes {
   path: string
@@ -119,6 +148,10 @@ const adminRoutes: IRoutes[] = [
     element: <Edit />,
   },
   {
+    path: MATERIAL_EDIT + "/:id",
+    element: <MaterialEdit />,
+  },
+  {
     path: BILLING_PAGE,
     element: <Billing />,
   },
@@ -158,31 +191,76 @@ const Routing = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path={MAIN_PAGE} element={<MainLayout />}>
+      <Routes>
+          <Route
+            path={MAIN_PAGE}
+            element={
+              <Suspense fallback={<MySpinner />}>
+                <MainLayout />
+              </Suspense>
+            }
+          >
             {routes.map((route, i) => (
-              <Route key={i} path={route.path} element={route.element}>
+              <Route
+                key={i}
+                path={route.path}
+                element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}
+              >
                 {route.children?.map((child, i) => (
-                  <Route key={i} path={child.path} element={child.element} />
+                  <Route
+                    key={i}
+                    path={child.path}
+                    element={<Suspense fallback={<MySpinner />}>{child.element}</Suspense>}
+                  />
                 ))}
               </Route>
             ))}
           </Route>
-          <Route path={AUTH_PAGE} element={<AuthLayout />}>
+          <Route
+            path={AUTH_PAGE}
+            element={
+              <Suspense fallback={<MySpinner />}>
+                <AuthLayout />
+              </Suspense>
+            }
+          >
             {authRoutes.map((route, i) => (
-              <Route key={i} path={route.path} element={route.element}>
+              <Route
+                key={i}
+                path={route.path}
+                element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}
+              >
                 {route.children?.map((child, i) => (
-                  <Route key={i} path={child.path} element={child.element} />
+                  <Route
+                    key={i}
+                    path={child.path}
+                    element={<Suspense fallback={<MySpinner />}>{child.element}</Suspense>}
+                  />
                 ))}
               </Route>
             ))}
           </Route>
           {isAdmin && (
-            <Route path={ADMIN_PAGE} element={<AdminLayout />}>
+            <Route
+              path={ADMIN_PAGE}
+              element={
+                <Suspense fallback={<MySpinner />}>
+                  <AdminLayout />
+                </Suspense>
+              }
+            >
               {adminRoutes.map((route, i) => (
-                <Route key={i} path={route.path} element={route.element}>
+                <Route
+                  key={i}
+                  path={route.path}
+                  element={<Suspense fallback={<MySpinner />}>{route.element}</Suspense>}
+                >
                   {route.children?.map((child, i) => (
-                    <Route key={i} path={child.path} element={child.element} />
+                    <Route
+                      key={i}
+                      path={child.path}
+                      element={<Suspense fallback={<MySpinner />}>{child.element}</Suspense>}
+                    />
                   ))}
                 </Route>
               ))}

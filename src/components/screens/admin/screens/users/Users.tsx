@@ -10,7 +10,6 @@ import Empty from "../../../../ui/error/Empty"
 import Error from "../../../../ui/error/Error"
 import MyDateInput from "../../../../ui/field/MyDateInput"
 import MyPhoneInput from "../../../../ui/field/MyPhoneInput"
-import MySelect from "../../../../ui/field/MySelect"
 import MyUserInput from "../../../../ui/field/MyUserInput"
 import TableSkeleton from "../../../../ui/skeletons/TableSkeleton"
 

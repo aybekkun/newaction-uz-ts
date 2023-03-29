@@ -1,7 +1,10 @@
 @import "../../../../../../assets/styles/var.scss";
 .root {
-  form {
+  .form {
     max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
   textarea {
     resize: none;
