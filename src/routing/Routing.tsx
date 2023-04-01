@@ -1,12 +1,12 @@
 import { Suspense, lazy, useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-import MySpinner from "../components/ui/spinner/MySpinner"
-import useAppDispatch from "../hooks/useAppDispatch.hook"
-import { useAuth } from "../hooks/useAuth.hooks"
 // import AdminLayout from "../components/layout/AdminLayout/AdminLayout"
 // import AuthLayout from "../components/layout/AuthLayout/AuthLayout"
 import MainLayout from "../components/layout/MainLayout/MainLayout"
+import MySpinner from "../components/ui/spinner/MySpinner"
+import useAppDispatch from "../hooks/useAppDispatch.hook"
+import { useAuth } from "../hooks/useAuth.hooks"
 // import Admin from "../components/screens/admin/Admin"
 // import Add from "../components/screens/admin/screens/add/Add"
 // import Admins from "../components/screens/admin/screens/admins/Admins"
@@ -68,6 +68,7 @@ const Material = lazy(() => import("../components/screens/course/material/Materi
 const Error404 = lazy(() => import("../pages/404/404"))
 const SignIn = lazy(() => import("../pages/Auth/SignIn"))
 const SignUp = lazy(() => import("../pages/Auth/SignUp"))
+const Offline = lazy(() => import("../pages/Auth/Offline"))
 const ContactPage = lazy(() => import("../pages/Contact/ContactPage"))
 const CoursePage = lazy(() => import("../pages/Course/CoursePage"))
 const CoursesPage = lazy(() => import("../pages/Courses/CoursesPage"))
@@ -121,6 +122,10 @@ const authRoutes: IRoutes[] = [
   {
     path: SIGNIN_PAGE,
     element: <SignIn />,
+  },
+  {
+    path: "/auth/offline",
+    element: <Offline />,
   },
   {
     path: "*",
