@@ -7,7 +7,6 @@ import MyPhoneInput from "../../components/ui/field/MyPhoneInput"
 import MyUserInput from "../../components/ui/field/MyUserInput"
 import useAppDispatch from "../../hooks/useAppDispatch.hook"
 import { useAuth } from "../../hooks/useAuth.hooks"
-import { ISignInput } from "../../shared/types/auth.types"
 import { nameValidation, phoneValidation } from "../../utils/validation/validation"
 
 import styles from "./Auth.module.scss"
